@@ -1,0 +1,23 @@
+{
+  "name": "playwrightlevel3assignments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:ddt": "playwright test tests/Level3-First-Assginment/TestDdt.spec.ts",
+    "test:smoke": "playwright test tests/Level3-First-Assginment/TestDdt.spec.ts --grep @smoke",
+    "test:regression": "playwright test tests/Level3-First-Assginment/TestDdt.spec.ts --grep @regression",
+    "test:positive": "playwright test tests/Level3-First-Assginment/TestDdt.spec.ts --grep @positive",
+    "test:negative": "playwright test tests/Level3-First-Assginment/TestDdt.spec.ts --grep @negative",
+    "test:headed": "playwright test tests/Level3-First-Assginment/TestDdt.spec.ts --headed",
+    "test:ui": "playwright test tests/Level3-First-Assginment/TestDdt.spec.ts --ui",
+    "report": "playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.65.0",
+    "@types/node": "^26.6.6"
+  }
+}

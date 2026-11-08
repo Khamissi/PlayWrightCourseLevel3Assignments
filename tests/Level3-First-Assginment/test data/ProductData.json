@@ -1,0 +1,72 @@
+[
+  {
+    "email": "ahmedelkhafgdfgmissi@yahoo.com",
+    "password": "Q@*V7LSFuZVjCP8",
+    "TestCaseID": "TC01",
+    "productName": "ZARA COAT 3",
+    "shouldExist": true,
+    "cardNumber": "1234-5678-9012-3456",
+    "expiryMonth": "12",
+    "expiryYear": "27",
+    "cvv": "123",
+    "cardHolderName": "Ahmed Elkhamissi",
+    "abstractCountryName": "Egy",
+    "fullCountryName": "Egypt"
+  },
+  {
+    "email": "ahmedelkhafgdfgmissi@yahoo.com",
+    "password": "Q@*V7LSFuZVjCP8",
+    "TestCaseID": "TC03",
+    "productName": "iphone 13 pro",
+    "shouldExist": true,
+    "cardNumber": "1234-5678-9012-3456",
+    "expiryMonth": "12",
+    "expiryYear": "27",
+    "cvv": "123",
+    "cardHolderName": "Ahmed Elkhamissi",
+    "abstractCountryName": "Egy",
+    "fullCountryName": "Egypt"
+  },
+  {
+    "email": "ahmedelkhafgdfgmissi@yahoo.com",
+    "password": "Q@*V7LSFuZVjCP8",
+    "TestCaseID": "TC04",
+    "productName": "ADIDAS ORIGINAL",
+    "shouldExist": true,
+    "cardNumber": "1234-5678-9012-3456",
+    "expiryMonth": "12",
+    "expiryYear": "27",
+    "cvv": "123",
+    "cardHolderName": "Ahmed Elkhamissi",
+    "abstractCountryName": "Egy",
+    "fullCountryName": "Egypt"
+  },
+  {
+    "email": "ahmedelkhafgdfgmissi@yahoo.com",
+    "password": "Q@*V7LSFuZVjCP8",
+    "TestCaseID": "TC05",
+    "productName": "NOT A REAL PRODUCT 123",
+    "shouldExist": false,
+    "cardNumber": "1234-5678-9012-3456",
+    "expiryMonth": "12",
+    "expiryYear": "27",
+    "cvv": "123",
+    "cardHolderName": "Ahmed Elkhamissi",
+    "abstractCountryName": "Egy",
+    "fullCountryName": "Egypt"
+  },
+  {
+    "email": "ahmedelkhafgdfgmissi@yahoo.com",
+    "password": "Q@*V7LSFuZVjCP8",
+    "TestCaseID": "TC06",
+    "productName": "ZARA COAT 99",
+    "shouldExist": false,
+    "cardNumber": "1234-5678-9012-3456",
+    "expiryMonth": "12",
+    "expiryYear": "27",
+    "cvv": "123",
+    "cardHolderName": "Ahmed Elkhamissi",
+    "abstractCountryName": "Egy",
+    "fullCountryName": "Egypt"
+  }
+]
