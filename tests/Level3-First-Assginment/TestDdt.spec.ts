@@ -32,10 +32,6 @@ async function saveEvidence(page: Page, testInfo: TestInfo, folder: string) {
     }
 }
 
-// Prints "Hello World" to the console.
-function printHelloWorld() {
-    console.log('Hello World');
-}
 
 
 
@@ -119,20 +115,7 @@ test.describe('Test purchase product', () => {
             // Already logged in (beforeAll): just go back to the shop and add the product
             await page.goto(Urls.RauhShettyShopUrl);
             await testShopPageObject.addProductToCart(data.productName);
-            /*await testShopPageObject.clickCheckoutButton();
-            await testCheckOutObject.completePurchase({
-                cardNumber: data.cardNumber,
-                month: data.expiryMonth,
-                year: data.expiryYear,
-                cvv: data.cvv,
-                cardHolderName: data.cardHolderName,
-                abstractCountryName: data.abstractCountryName,
-                fullCountryName: data.fullCountryName
-            });
-
-            // The order was actually placed, and it contains the product we bought
-            await expect(testCheckOutObject.locateOrderConfirmationMessage()).toBeVisible();
-            await expect(page.getByText(data.productName, { exact: true }).first()).toBeVisible();*/
+         
         });
     }
 
@@ -181,7 +164,7 @@ test.describe('Test select non-existent product', () => {
 
 
 test.describe('Test delete product', () => {
-    //test.skip(({ browserName }) => browserName !== SHARED_ACCOUNT_BROWSER, SKIP_REASON);
+    test.skip(({ browserName }) => browserName !== SHARED_ACCOUNT_BROWSER, SKIP_REASON);
 
     for (const data of ProductDelete) {
         test(`${data.TestCaseID}: delete ${data.productName}`, { tag: TAGS.positiveCart }, async () => {
@@ -206,4 +189,4 @@ test.describe('Test delete product', () => {
     });
 });
 
-}); // end of 'Cart flow: shared login'
+}); 
