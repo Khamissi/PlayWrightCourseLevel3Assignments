@@ -1,7 +1,5 @@
 [
   {
-    "email": "ahmedelkhafgdfgmissi@yahoo.com",
-    "password": "Q@*V7LSFuZVjCP8",
     "TestCaseID": "TC01",
     "productName": "ZARA COAT 3",
     "shouldExist": true,
@@ -14,8 +12,6 @@
     "fullCountryName": "Egypt"
   },
   {
-    "email": "ahmedelkhafgdfgmissi@yahoo.com",
-    "password": "Q@*V7LSFuZVjCP8",
     "TestCaseID": "TC03",
     "productName": "iphone 13 pro",
     "shouldExist": true,
@@ -28,8 +24,6 @@
     "fullCountryName": "Egypt"
   },
   {
-    "email": "ahmedelkhafgdfgmissi@yahoo.com",
-    "password": "Q@*V7LSFuZVjCP8",
     "TestCaseID": "TC04",
     "productName": "ADIDAS ORIGINAL",
     "shouldExist": true,
@@ -42,8 +36,6 @@
     "fullCountryName": "Egypt"
   },
   {
-    "email": "ahmedelkhafgdfgmissi@yahoo.com",
-    "password": "Q@*V7LSFuZVjCP8",
     "TestCaseID": "TC05",
     "productName": "NOT A REAL PRODUCT 123",
     "shouldExist": false,
@@ -56,8 +48,6 @@
     "fullCountryName": "Egypt"
   },
   {
-    "email": "ahmedelkhafgdfgmissi@yahoo.com",
-    "password": "Q@*V7LSFuZVjCP8",
     "TestCaseID": "TC06",
     "productName": "ZARA COAT 99",
     "shouldExist": false,

@@ -1,14 +1,14 @@
 [
   {
     "TestCaseID": "Valid email and password",
-    "email": "ahmedelkhafgdfgmissi@yahoo.com",
-    "password": "Q@*V7LSFuZVjCP8",
+    "email": "__SHOP_EMAIL__",
+    "password": "__SHOP_PASSWORD__",
     "shouldSucceed": true,
     "expectedError": ""
   },
   {
     "TestCaseID": "Empty password",
-    "email": "ahmedelkhafgdfgmissi@yahoo.com",
+    "email": "__SHOP_EMAIL__",
     "password": "",
     "shouldSucceed": false,
     "expectedError": "*Password is required"
@@ -16,13 +16,13 @@
   {
     "TestCaseID": "Empty email",
     "email": "",
-    "password": "Q@*V7LSFuZVjCP8",
+    "password": "__SHOP_PASSWORD__",
     "shouldSucceed": false,
     "expectedError": "*Email is required"
   },
   {
     "TestCaseID": "Invalid credentials",
-    "email": "ahmedelkhafgdfgmissi@yahoo.com",
+    "email": "__SHOP_EMAIL__",
     "password": "Q@*V7LSFgfhgfhgfuZVjCP8",
     "shouldSucceed": false,
     "expectedError": "Incorrect email or password."

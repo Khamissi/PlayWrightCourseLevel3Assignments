@@ -11,7 +11,7 @@
     "test:negative": "playwright test tests/Level3-First-Assginment/TestDdt.spec.ts --grep @negative",
     "test:headed": "playwright test tests/Level3-First-Assginment/TestDdt.spec.ts --headed",
     "test:ui": "playwright test tests/Level3-First-Assginment/TestDdt.spec.ts --ui",
-    "report": "playwright show-report"
+    "report": "playwright show-report report"
   },
   "keywords": [],
   "author": "",

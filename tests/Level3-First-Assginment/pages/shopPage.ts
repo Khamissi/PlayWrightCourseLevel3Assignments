@@ -41,10 +41,28 @@ export class ShopPage
     return this.page.locator('button[routerlink="/dashboard/cart"]');
     }
 
-    async clickCartButton() 
+    async clickCartButton()
     {
         await this.locateCartButton().click();
-    }   
+    }
+
+    // The number badge on the Cart button. It shows "1", "2", ... and is empty (not "0") when the cart is empty.
+    private locateCartCount()
+    {
+        return this.locateCartButton().locator('label');
+    }
+
+    async getCartCount(): Promise<number>
+    {
+        const text = (await this.locateCartCount().textContent())?.trim() ?? '';
+        return text === '' ? 0 : Number(text);
+    }
+
+    async expectCartCount(expected: number)
+    {
+        await expect(this.locateCartCount(),
+            `Cart button should show ${expected} item(s)`).toHaveText(expected === 0 ? /^\s*$/ : String(expected));
+    }
 
     public locateCartItem(productName: string) 
     {
@@ -109,8 +127,12 @@ export class ShopPage
         const allCartRows = this.page.locator('li.items');
         const totalRowsBefore = await allCartRows.count();
         const productRowsBefore = await cartRow.count();
+        const cartCountBefore = await this.getCartCount();
 
         await this.locateDeleteButtonForSpecificProduct(productName).click();
+
+        // The number on the Cart button goes down by one too
+        await this.expectCartCount(cartCountBefore - 1);
 
         if (totalRowsBefore === 1) {
             // Deleting the last product replaces the table with the empty-cart message

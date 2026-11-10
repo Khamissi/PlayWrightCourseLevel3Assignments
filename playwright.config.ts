@@ -38,7 +38,9 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters
      On CI: live progress in the job log + an HTML report that is uploaded as an artifact (never auto-opened). */
-  reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'html',
+  reporter: process.env.CI
+    ? [['list'], ['html', { outputFolder: 'report', open: 'never' }]]
+    : [['html', { outputFolder: 'report' }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */

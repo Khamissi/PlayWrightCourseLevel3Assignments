@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main, master ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, master, first-assignment-level-3 ]
   # Manual run: Actions tab -> "TestDdt - Playwright" -> "Run workflow"
   workflow_dispatch:
     inputs:
@@ -37,7 +37,7 @@ jobs:
 
     env:
       # Shop account from repository secrets (Settings -> Secrets and variables -> Actions).
-      # If they are not set, the tests fall back to the credentials in the JSON test data.
+      # Both are required: there is no fallback, the job fails if either one is missing.
       SHOP_EMAIL: ${{ secrets.SHOP_EMAIL }}
       SHOP_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
       TAG: ${{ inputs.tag || 'all' }}
@@ -50,6 +50,13 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
+
+      - name: Check shop account secrets
+        run: |
+          if [ -z "$SHOP_EMAIL" ] || [ -z "$SHOP_PASSWORD" ]; then
+            echo "::error::SHOP_EMAIL and SHOP_PASSWORD repository secrets must be set (Settings -> Secrets and variables -> Actions)."
+            exit 1
+          fi
 
       - name: Install dependencies
         run: npm ci
@@ -80,7 +87,7 @@ jobs:
         if: ${{ !cancelled() }}
         with:
           name: playwright-report-${{ matrix.browser }}
-          path: playwright-report/
+          path: report/
           retention-days: 30
 
       - name: Upload traces of retried tests
