@@ -1,0 +1,100 @@
+name: TestDdt - Playwright
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master, first-assignment-level-3 ]
+  # Manual run: Actions tab -> "TestDdt - Playwright" -> "Run workflow"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tests to run (by tag)'
+        type: choice
+        default: all
+        options: [ all, '@smoke', '@regression', '@positive', '@negative', '@login', '@cart' ]
+      browser:
+        description: 'Browser'
+        type: choice
+        default: all
+        options: [ all, chromium, firefox, webkit ]
+
+# All runs log into the same shop account: never run two workflow runs at the same time
+concurrency:
+  group: shop-shared-account
+  cancel-in-progress: false
+
+jobs:
+  test:
+    name: TestDdt (${{ matrix.browser }})
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    strategy:
+      # Keep the other browsers running when one fails, so every browser uploads its screenshots
+      fail-fast: false
+      matrix:
+        browser: ${{ fromJSON((github.event_name == 'workflow_dispatch' && inputs.browser != 'all') && format('["{0}"]', inputs.browser) || '["chromium","firefox","webkit"]') }}
+
+    env:
+      # Shop account from repository secrets (Settings -> Secrets and variables -> Actions).
+      # Both are required: there is no fallback, the job fails if either one is missing.
+      SHOP_EMAIL: ${{ secrets.SHOP_EMAIL }}
+      SHOP_PASSWORD: ${{ secrets.SHOP_PASSWORD }}
+      TAG: ${{ inputs.tag || 'all' }}
+      BROWSER: ${{ matrix.browser }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+
+      - name: Check shop account secrets
+        run: |
+          if [ -z "$SHOP_EMAIL" ] || [ -z "$SHOP_PASSWORD" ]; then
+            echo "::error::SHOP_EMAIL and SHOP_PASSWORD repository secrets must be set (Settings -> Secrets and variables -> Actions)."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browser (${{ matrix.browser }})
+        run: npx playwright install --with-deps "$BROWSER"
+
+      - name: Run TestDdt.spec.ts (${{ matrix.browser }}, tag ${{ inputs.tag || 'all' }})
+        run: |
+          if [ "$TAG" = "all" ]; then
+            npx playwright test tests/Level3-First-Assginment/TestDdt.spec.ts --project="$BROWSER"
+          else
+            npx playwright test tests/Level3-First-Assginment/TestDdt.spec.ts --project="$BROWSER" --grep "$TAG"
+          fi
+
+      # The uploads below run whether the tests passed or failed, so screenshots of both are always available
+      - name: Upload screenshots (passed + failed)
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: evidences-${{ matrix.browser }}
+          path: tests/Level3-First-Assginment/evidences/
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-${{ matrix.browser }}
+          path: report/
+          retention-days: 30
+
+      - name: Upload traces of retried tests
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: test-results-${{ matrix.browser }}
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 30

@@ -1,0 +1,8 @@
+{       "RauhShettyLogInRegisterUrl":"https://rahulshettyacademy.com/client/#/auth/login",
+        "RauhShettyShopUrl":"https://rahulshettyacademy.com/client/#/dashboard/dash",
+        "RauhShettyShopUrlClient":"https://rahulshettyacademy.com/client",
+        "ClientUrl":"https://rahulshettyacademy.com/client/",
+        "LoginUrl":"/api/ecom/auth/login",
+        "OrdersUrl":"/api/ecom/order/get-orders-for-customer/6ab132502be7a4bc2b604b3d",
+        "BaseUrl":"https://rahulshettyacademy.com"
+}

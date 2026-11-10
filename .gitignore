@@ -3,9 +3,13 @@
 node_modules/
 /test-results/
 /playwright-report/
+/report/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
 
 # Local secrets (shop email/password)
 .env
+
+# Personal study notes
+learning/
